@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import { BookList, BookListItem } from "../components/BookList";
+import Thumbnail from "../components/Thumbnails";
+
 
 
 class Books extends Component {
@@ -105,7 +106,7 @@ class Books extends Component {
           </Row>
           <Row>
             <Col size="md-12">
-            {this.state.books.length ? (
+          {/*   {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book.id}>
@@ -120,30 +121,45 @@ class Books extends Component {
               </List>
             ) : (
               <h3>No Results to Display</h3>
-            )}
+            )} */}
 
-
-
-
-
-
-              {/* {!this.state.books.length ? (
+               {!this.state.books.length ? (
                 <h1 className="text-center">No books to Display</h1>
               ) : (
-                <BookList>
+                <List>
                   {this.state.books.map(book => {
                     return (
-                      <BookListItem
+                      <ListItem
                         key={book.volumeInfo.title}
-                        title={book.volumeInfo.title}
-                        href={book.volumeInfo.infoLink}
-                        ingredients={book.volumeInfo.description}
-                        thumbnail={book.volumeInfo.imageLinks.smallThumbnail}
-                      />
+                      > 
+        <Row>
+        <Col size="xs-8 sm-10">
+            <h3>{book.volumeInfo.title}</h3>
+            <p>Author(s): {book.volumeInfo.authors ? (book.volumeInfo.authors.join(', ')) : ("")}</p>
+          </Col>
+          <Col size="xs-8 sm-2">
+          {/* <Link to={book.volumeInfo.infoLink}>View</Link> */}
+          <a href={book.volumeInfo.infoLink} class="btn btn-default">View</a>
+
+          <SaveBtn onClick={() => this.saveBook({'title':book.volumeInfo.title,'authors':book.volumeInfo.authors,'description':book.volumeInfo.description, 'image':book.volumeInfo.imageLinks.smallThumbnail, 'link':book.volumeInfo.infoLink})} />
+
+          </Col>
+          </Row>
+          <Row>
+          <Col size="xs-4 sm-2">
+            <Thumbnail src={book.volumeInfo.imageLinks.smallThumbnail} /> 
+          </Col>
+          <Col size="xs-8 sm-10">
+          <h5>Description: </h5> <p>{book.volumeInfo.description}</p>
+          </Col>
+        </Row>
+                    </ListItem>
                     );
+                    
                   })}
-                </BookList>
-              )}  */}
+
+                </List>
+              )}
             </Col>
           </Row> 
       </Container>

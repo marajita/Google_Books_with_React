@@ -1,6 +1,7 @@
 import React from "react";
-// import Thumbnail from "../Thumbnail";
+import Thumbnail from "../Thumbnails";
 import { Container, Row, Col } from "../Grid";
+import SaveBtn from "../SaveBtn";
 
 // Exporting both BookList and BookListItem from this file
 
@@ -10,28 +11,31 @@ export function BookList({ children }) {
 }
 
 // BookListItem renders a bootstrap list item containing data from the recipe api call
-export function BookListItem(props) {
+export function BookListItem({
+title,
+authors,
+href,
+thumbnail,
+description
+}) {
   return (
     <li className="list-group-item">
       <Container>
         <Row>
+        <Col size="xs-8 sm-9">
+            <h3>{title}</h3>
+            <p>Author(s): {authors}</p>
+          </Col>
+          <Col size="xs-8 sm-2">
+          <a href={href}>View</a>
+          </Col>
+          </Row>
+          <Row>
           <Col size="xs-4 sm-2">
-            {/* <Thumbnail src="http://img.recipepuppy.com/560556.jpg" /> */}
+            <Thumbnail src={thumbnail} /> 
           </Col>
           <Col size="xs-8 sm-9">
-            <h3>Vegetable-Pasta Oven Omelet</h3>
-            <p>
-              Ingredients: "tomato, onions, red pepper, garlic, olive oil,
-              zucchini, cream cheese, vermicelli, eggs, parmesan cheese, milk,
-              italian seasoning, salt, black pepper"
-            </p>
-            <a
-              rel="noreferrer noopener"
-              target="_blank"
-              href="http://find.myrecipes.com/recipes/recipefinder.dyn?action=displayRecipe&recipe_id=520763"
-            >
-              Go to recipe!
-            </a>
+          <h5>Description: </h5> <p>{description}</p>
           </Col>
         </Row>
       </Container>

@@ -5,7 +5,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import Thumbnail from "../components/Thumbnails";
 
 class Books extends Component {
   state = {
@@ -65,12 +65,27 @@ class Books extends Component {
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                     <Row>
+        <Col size="md-10">
+            <h3>{book.title}</h3>
+            <p>Author(s): {book.authors ? (book.authors.join(', ')) : ("")}</p>
+          </Col>
+          <Col size="md-2">
+        
+            <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+
+          </Col>
+          </Row>
+
+          <Row>
+          <Col size="xs-4 sm-2">
+            <Thumbnail src={book.image} /> 
+          </Col>
+          <Col size="xs-8 sm-10">
+          <h5>Description: </h5> <p>{book.description}</p>
+          </Col>
+        </Row>
+
                   </ListItem>
                 ))}
               </List>
