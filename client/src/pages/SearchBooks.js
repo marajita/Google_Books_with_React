@@ -3,7 +3,6 @@ import Button from "../components/Button";
 import SaveBtn from "../components/SaveBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
@@ -53,9 +52,6 @@ class Books extends Component {
     event.preventDefault();
     if (this.state.bookSearch) {
       console.log("inside form submit1");
-      // API.getGoogleBooks(this.state.bookSearch)
-      // .then(res => this.setState({ books: res.data }))
-      // .catch(err => console.log(err));
 
       API.getGoogleBooks(this.state.bookSearch)
       .then(res => {

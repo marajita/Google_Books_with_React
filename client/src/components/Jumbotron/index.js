@@ -4,9 +4,9 @@ function Jumbotron({ children }) {
   return (
     <div
       style={{
-        height: 300,
+        height: 205,
         clear: "both",
-        paddingTop: 120,
+        paddingTop: 75,
         textAlign: "center"
       }}
       className="jumbotron"

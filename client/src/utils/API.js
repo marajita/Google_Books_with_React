@@ -18,10 +18,7 @@ export default {
     console.log(bookData)
     return axios.post("/api/books", bookData);
   },
-//get books from google api
-  // getGoogleBooks: function(id) {
-  //   return axios.get("/api/googleBooks/" + id);
-  // }
+
   getGoogleBooks: function(query) {
     console.log("inside getGoogleBooks");
     return axios.get("/api/googleBooks", { params: { q: query } });
